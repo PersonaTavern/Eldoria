@@ -13,6 +13,18 @@ async def on_message(message):
 # IMPORT DISCORD.PY. ALLOWS ACCESS TO DISCORD'S API.
 import discord
 
+# IMPORT THE OS MODULE.
+import os
+
+# IMPORT LOAD_DOTENV FUNCTION FROM DOTENV MODULE.
+from dotenv import load_dotenv
+
+# LOADS THE .ENV FILE THAT RESIDES ON THE SAME LEVEL AS THE SCRIPT.
+load_dotenv()
+
+# GRAB THE API TOKEN FROM THE .ENV FILE.
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+
 # GETS THE CLIENT OBJECT FROM DISCORD.PY. CLIENT IS SYNONYMOUS WITH BOT.
 bot = discord.Client()
 
@@ -42,4 +54,4 @@ async def on_message(message):
 		await message.channel.send("hey dirtbag")
 
 # EXECUTES THE BOT WITH THE SPECIFIED TOKEN. TOKEN HAS BEEN REMOVED AND USED JUST AS AN EXAMPLE.
-bot.run("NzA0OTcwNzUyNzQyNjUzOTYz.Xqk5ww.1U_-WdW4aeGWCNF7bOJkLAu_2TM")
+bot.run(DISCORD_TOKEN) 
