@@ -1,33 +1,29 @@
 # main.py
+# Import modules and libraries 
+import os
+import discord
 from discord.ext import commands
+from dotenv import load_dotenv
 
-bot = commands.Bot(command_prefix='!')
+# Get Environment Variables
+load_dotenv()
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
+# Configure bot
+bot = discord.Client()
+bot = commands.Bot(command_prefix='Tia~')
+
+@bot.event
+async def on_ready():
+   print("Tia ready!")
+	
 @bot.event
 async def on_message(message):
     # Implement main game loop logic here
     await bot.process_commands(message)
 
-    
-## Sample Code from https://builtin.com/software-engineering-perspectives/discord-bot-python
-# IMPORT DISCORD.PY. ALLOWS ACCESS TO DISCORD'S API.
-import discord
-
-# IMPORT THE OS MODULE.
-import os
-
-# IMPORT LOAD_DOTENV FUNCTION FROM DOTENV MODULE.
-from dotenv import load_dotenv
-
-# LOADS THE .ENV FILE THAT RESIDES ON THE SAME LEVEL AS THE SCRIPT.
-load_dotenv()
-
-# GRAB THE API TOKEN FROM THE .ENV FILE.
-DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
-
-# GETS THE CLIENT OBJECT FROM DISCORD.PY. CLIENT IS SYNONYMOUS WITH BOT.
-bot = discord.Client()
-
+## Reference for listensers
+"""
 # EVENT LISTENER FOR WHEN THE BOT HAS SWITCHED FROM OFFLINE TO ONLINE.
 @bot.event
 async def on_ready():
@@ -52,6 +48,7 @@ async def on_message(message):
 	if message.content == "hello":
 		# SENDS BACK A MESSAGE TO THE CHANNEL.
 		await message.channel.send("hey dirtbag")
+"""
 
-# EXECUTES THE BOT WITH THE SPECIFIED TOKEN. TOKEN HAS BEEN REMOVED AND USED JUST AS AN EXAMPLE.
+# EXECUTES THE BOT WITH THE SPECIFIED TOKEN.
 bot.run(DISCORD_TOKEN) 
