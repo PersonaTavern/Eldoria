@@ -11,16 +11,24 @@ DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 # Configure bot
 bot = discord.Client()
-bot = commands.Bot(command_prefix='Tia~')
+bot = commands.Bot(command_prefix='eh~ ')
 
 @bot.event
 async def on_ready():
-   print("Tia ready!")
+   print("Eek-Hue ready!")
 	
 @bot.event
 async def on_message(message):
     # Implement main game loop logic here
     await bot.process_commands(message)
+
+# EVENT LISTENER FOR WHEN A NEW MESSAGE IS SENT TO A CHANNEL.
+@bot.event
+async def on_message(message):
+	# CHECKS IF THE MESSAGE THAT WAS SENT IS EQUAL TO "HELLO".
+	if message.content == "hello":
+		# SENDS BACK A MESSAGE TO THE CHANNEL.
+		await message.channel.send("hey dirtbag")
 
 ## Reference for listensers
 """
@@ -40,14 +48,6 @@ async def on_ready():
 
 	# PRINTS HOW MANY GUILDS / SERVERS THE BOT IS IN.
 	print("SampleDiscordBot is in " + str(guild_count) + " guilds.")
-
-# EVENT LISTENER FOR WHEN A NEW MESSAGE IS SENT TO A CHANNEL.
-@bot.event
-async def on_message(message):
-	# CHECKS IF THE MESSAGE THAT WAS SENT IS EQUAL TO "HELLO".
-	if message.content == "hello":
-		# SENDS BACK A MESSAGE TO THE CHANNEL.
-		await message.channel.send("hey dirtbag")
 """
 
 # EXECUTES THE BOT WITH THE SPECIFIED TOKEN.
