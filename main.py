@@ -15,7 +15,7 @@ intents.guilds = True  # Enables GUILDS intent, which includes message_content
 
 # Configure bot
 bot = discord.Client()
-bot = commands.Bot(command_prefix='eh~ ')
+bot = commands.Bot(command_prefix='eh~ ', intents=intents)
 
 @bot.event
 async def on_ready():
@@ -25,6 +25,7 @@ async def on_ready():
 async def on_message(message):
     # Process commands
     await bot.process_commands(message)
+    print(message)
 
     # Respond to "hello" (case-insensitive)
     if message.content.lower() == "hello":
