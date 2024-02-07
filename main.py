@@ -9,6 +9,10 @@ from dotenv import load_dotenv
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
+# Enable intents
+intents = discord.Intents.default()
+intents.message_content = True
+
 # Configure bot
 bot = discord.Client()
 bot = commands.Bot(command_prefix='eh~ ')
@@ -19,16 +23,12 @@ async def on_ready():
 	
 @bot.event
 async def on_message(message):
-    # Implement main game loop logic here
+    # Process commands
     await bot.process_commands(message)
 
-# EVENT LISTENER FOR WHEN A NEW MESSAGE IS SENT TO A CHANNEL.
-@bot.event
-async def on_message(message):
-	# CHECKS IF THE MESSAGE THAT WAS SENT IS EQUAL TO "HELLO".
-	if message.content == "hello":
-		# SENDS BACK A MESSAGE TO THE CHANNEL.
-		await message.channel.send("hey dirtbag")
+    # Respond to "hello" (case-insensitive)
+    if message.content.lower() == "hello":
+        await message.channel.send("hey dirtbag")
 
 ## Reference for listensers
 """
