@@ -11,7 +11,8 @@ DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 # Enable intents
 intents = discord.Intents.default()
-intents.guilds = True  # Enables GUILDS intent, which includes message_content
+intents.guilds = True  # Enables GUILDS intent
+intents.message_content = True
 
 # Configure bot
 bot = discord.Client()
