@@ -27,6 +27,7 @@ async def on_message(message):
     await bot.process_commands(message)
     print(message)
     print(message.content)
+    print(message.type)
 
     # Respond to "hello" (case-insensitive)
     if message.content.lower() == "hello":
