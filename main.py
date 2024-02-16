@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
-"""
 From Discord.py API page
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -22,7 +21,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = MyClient(intents=intents)
-client.run('my token goes here')
+client.run(DISCORD_TOKEN)
 
 
 """
@@ -53,7 +52,7 @@ async def on_message(message):
     # Respond to "hello" (case-insensitive)
     if message.content.lower() == "hello":
         await message.channel.send("hey dirtbag")
-
+"""
 ## Reference for listensers
 """
 # EVENT LISTENER FOR WHEN THE BOT HAS SWITCHED FROM OFFLINE TO ONLINE.
@@ -75,4 +74,4 @@ async def on_ready():
 """
 
 # EXECUTES THE BOT WITH THE SPECIFIED TOKEN.
-bot.run(DISCORD_TOKEN) 
+# bot.run(DISCORD_TOKEN) 
