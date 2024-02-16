@@ -50,6 +50,12 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
+async def on_member_join(member):
+    guild = member.guild
+    if guild.system_channel is not None:
+        to_send = 'Welcome {0.mention} to {1.name}!'.format(member, guild)
+        await guild.system_channel.send(to_send)
+
 @bot.command()
 async def add(ctx, left: int, right: int):
     """Adds two numbers together."""
