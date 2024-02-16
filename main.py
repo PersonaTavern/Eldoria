@@ -106,7 +106,7 @@ async def _bot(ctx):
 bot.run(DISCORD_TOKEN)
 
 """
-Object Class sample
+Object Class role reaction sample
 # This example requires the 'members' privileged intents
 
 import discord
@@ -192,6 +192,28 @@ intents.members = True
 
 client = MyClient(intents=intents)
 client.run('token')
+
+# Reply sample
+import discord
+
+class MyClient(discord.Client):
+    async def on_ready(self):
+        print('Logged in as')
+        print(self.user.name)
+        print(self.user.id)
+        print('------')
+
+    async def on_message(self, message):
+        # we do not want the bot to reply to itself
+        if message.author.id == self.user.id:
+            return
+
+        if message.content.startswith('!hello'):
+            await message.reply('Hello!', mention_author=True)
+
+client = MyClient()
+client.run('token')
+
 
 """
 
