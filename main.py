@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
-# From Discord.py API page
+"""
+# From Discord.py API page V2.3
 class MyClient(discord.Client):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
@@ -23,11 +24,21 @@ intents.message_content = True
 client = MyClient(intents=intents)
 client.run(DISCORD_TOKEN)
 
-
 """
 
+# Discord.py V1.7.3
+class MyClient(discord.Client):
+    async def on_ready(self):
+        print('Logged on as {0}!'.format(self.user))
+
+    async def on_message(self, message):
+        print('Message from {0.author}: {0.content}'.format(message))
+
+client = MyClient()
+client.run(DISCORD_TOKEN)
 
 
+"""
 # Enable intents
 intents = discord.Intents.default()
 intents.guilds = True  # Enables GUILDS intent
