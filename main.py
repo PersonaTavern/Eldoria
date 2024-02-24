@@ -1,7 +1,7 @@
-# main.py
 # Import modules and libraries 
 import os
 import discord
+import random
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -10,7 +10,8 @@ load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 """
-# From Discord.py API page V2.3.2
+# Part 1: From Discord.py API page V2.3.2
+# Not working currently, keeping for future test - Glitch supports up to v1.7.3
 class MyClient(discord.Client):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
@@ -26,12 +27,8 @@ client.run(DISCORD_TOKEN)
 
 """
 
-# Discord.py V1.7.3
+# Part 2: Discord.py V1.7.3 sample - mostly working
 # This example requires the 'members' privileged intents
-
-import discord
-from discord.ext import commands
-import random
 
 description = '''An example bot to showcase the discord.ext.commands extension
 module.
@@ -106,12 +103,16 @@ async def _bot(ctx):
 bot.run(DISCORD_TOKEN)
 
 """
-Object Class role reaction sample
+# Part 3: From v1.7.3 Object Class role reaction sample
 # This example requires the 'members' privileged intents
 
-import discord
-
 class MyClient(discord.Client):
+    # Code from Part 4
+    async def on_ready(self):
+        print('Logged in as')
+        print(self.user.name)
+        print(self.user.id)
+        print('------')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -191,10 +192,11 @@ intents = discord.Intents.default()
 intents.members = True
 
 client = MyClient(intents=intents)
-client.run('token')
+client.run(DISCORD_TOKEN)
+"""
 
-# Reply sample
-import discord
+"""
+# Reply sample using object class
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -212,14 +214,14 @@ class MyClient(discord.Client):
             await message.reply('Hello!', mention_author=True)
 
 client = MyClient()
-client.run('token')
+client.run(DISCORD_TOKEN)
+
+"""
+
 
 
 """
-
-
-
-"""
+# Self tested failed code due to lack of intent - to try again later
 # Enable intents
 intents = discord.Intents.default()
 intents.guilds = True  # Enables GUILDS intent
