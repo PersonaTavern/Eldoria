@@ -39,7 +39,7 @@ intents = discord.Intents.default()
 intents.members = True
 
 bot = commands.Bot(command_prefix='?', description=description, intents=intents)
-
+"""
 @bot.event
 async def on_ready():
     print('Logged in as')
@@ -52,7 +52,8 @@ async def on_member_join(member):
     if guild.system_channel is not None:
         to_send = 'Welcome {0.mention} to {1.name}!'.format(member, guild)
         await guild.system_channel.send(to_send)
-
+"""
+'''
 @bot.command()
 async def add(ctx, left: int, right: int):
     """Adds two numbers together."""
@@ -101,8 +102,8 @@ async def _bot(ctx):
     await ctx.send('Yes, the bot is cool.')
 
 bot.run(DISCORD_TOKEN)
+'''
 
-"""
 # Part 3: From v1.7.3 Object Class role reaction sample
 # This example requires the 'members' privileged intents
 
@@ -122,6 +123,12 @@ class MyClient(discord.Client):
             discord.PartialEmoji(name='🟡'): 0, # ID of the role associated with unicode emoji '🟡'.
             discord.PartialEmoji(name='green', id=0): 0, # ID of the role associated with a partial emoji's ID.
         }
+
+    # From previous part to check if class is working
+    @bot.command(description='For when you wanna settle the score some other way')
+    async def choose(ctx, *choices: str):
+        """Chooses between multiple choices."""
+        await ctx.send(random.choice(choices))
 
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
         """Gives a role based on a reaction emoji."""
@@ -188,12 +195,9 @@ class MyClient(discord.Client):
             # If we want to do something in case of errors we'd do it here.
             pass
 
-intents = discord.Intents.default()
-intents.members = True
-
 client = MyClient(intents=intents)
 client.run(DISCORD_TOKEN)
-"""
+
 
 """
 # Reply sample using object class
@@ -215,8 +219,8 @@ class MyClient(discord.Client):
 
 client = MyClient()
 client.run(DISCORD_TOKEN)
-
 """
+
 
 
 
